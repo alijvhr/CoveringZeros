@@ -1,5 +1,5 @@
 import Matrix from "./Matrix.mjs";
-export default class HungarianAlgorithm extends Matrix {
+export default class ZerosCover extends Matrix {
     lines;
     minimum;
 

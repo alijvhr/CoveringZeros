@@ -1,6 +1,6 @@
-import HungarianAlgorithm from "./HungarianAlgorithm.mjs";
+import ZerosCover from "./ZerosCover.mjs";
 
-export default class BruteForce extends HungarianAlgorithm {
+export default class BruteForce extends ZerosCover {
 
     run() {
         let len = [this.matrix.length, this.matrix[0].length];

@@ -1,7 +1,7 @@
-import HungarianAlgorithm from "./HungarianAlgorithm.mjs";
+import ZerosCover from "./ZerosCover.mjs";
 import Matrix from "./Matrix.mjs";
 
-export default class Optimized extends HungarianAlgorithm {
+export default class Optimized extends ZerosCover {
 
     #powers;
     #crosses;
