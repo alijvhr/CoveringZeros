@@ -14,7 +14,7 @@ It's free to use and copy but please consider a simple link to this repo!
 ## Supported Languages
 
 * [X]  Javascript
-* [ ]  C++
+* [X]  C++
 * [ ]  Python
 * [ ]  PHP
 * [ ]  Java
