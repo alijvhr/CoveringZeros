@@ -26,7 +26,8 @@ It's free to use and copy but please consider a simple link to this repo!
 
 The test code is included in every language and you can test it your self. Below results comes from `JavaScript`.
 
-Result of **100 random generated matrixes with 15 rows and 13 columns**:
+
+* Result of **100 random generated matrixes with 15 rows and 13 columns**:
 
 ```
 Total timings are (seconds):
@@ -35,7 +36,8 @@ Average timings are (milliseconds):
     { Bruteforce: 2556.9042939997466, Optimized: 0.08223899953067303 }
 ```
 
-Result of **100 random generated matrixes with 12 rows and 10 columns**:
+
+* Result of **100 random generated matrixes with 12 rows and 10 columns**:
 
 ```
 Total timings are (seconds):
@@ -45,22 +47,24 @@ Average timings are (milliseconds):
 
 ```
 
-Result of **1000 random generated matrixes with 10 rows and 10 columns**:
+
+
+* Result of **1000 random generated matrixes with 10 rows and 10 columns**:
 
 ```
 Total timings are (seconds):
-     { Bruteforce: 2.0197328998073933, Optimized: 0.01301179999858141 }
+     { Bruteforce: 13.808599199980497, Optimized: 0.02556609996408224 }
 Average timings are (milliseconds):
-     { Bruteforce: 2.0197328998073933, Optimized: 0.01301179999858141 }
+     { Bruteforce: 13.808599199980497, Optimized: 0.02556609996408224 }
 
 ```
-
-I will write a wiki about it in near future so you can the the algorithm.
-
-Made with ❤️.
 
 ## Contacts
 
 Feel free to contact at anytime about anything.
+
+I will write a wiki about it in near future so you can understand the algorithm.
+
+Made with ❤️.
 
 [Email](mailto:alijvhr@gmail.com), [Telegram](https://t.me/alijvhr), [LinkedIn](https://www.linkedin.com/in/alijvhr/)
