@@ -1,4 +1,5 @@
 #include <iostream>
+#include <utility>
 #include <vector>
 #include <string>
 #include "Matrix.h"
@@ -9,44 +10,42 @@
 
 class ZerosCover : public Matrix {
 public:
-    std::vector<std::vector<bool>> lines;
+    bVec lines[2];
     int minimum;
 
     ZerosCover() : minimum(0) {}
 
-    ZerosCover& input(std::vector<std::vector<int>> input) {
-        this->matrix = input;
+    ZerosCover &input(iMatrix input) {
+        matrix = std::move(input);
         return *this;
     }
 
-    ZerosCover& run() {
-        this->minimum = 0;
+    virtual ZerosCover &run() {
+        minimum = 0;
         return *this;
     }
 
-    std::vector<std::vector<std::string>> output() {
-        std::vector<std::vector<int>> input = this->matrix;
-        std::vector<std::vector<bool>> lines = this->lines;
-        std::vector<std::vector<std::string>> output(input.size(), std::vector<std::string>(input[0].size()));
+    sMatrix output() {
+        sMatrix map = Matrix::create(matrix.size(),matrix[0].size(), std::string());
 
-        for (int row = 0; row < input.size(); row++) {
-            for (int col = 0; col < input[0].size(); col++) {
+        for (int row = 0; row < matrix.size(); row++) {
+            for (int col = 0; col < matrix[0].size(); col++) {
                 if (lines[0][row] && lines[1][col])
-                    output[row][col] = "_|_";
+                    map[row][col] = "_|_";
                 else if (lines[0][row])
-                    output[row][col] = "___";
+                    map[row][col] = "___";
                 else if (lines[1][col])
-                    output[row][col] = " | ";
+                    map[row][col] = " | ";
                 else
-                    output[row][col] = std::to_string(input[row][col]);
+                    map[row][col] = std::to_string(matrix[row][col]);
             }
         }
 
-        return output;
+        return map;
     }
 
     std::string drawOutput() {
-        return Matrix::drawTable(this->output());
+        return Matrix::drawTable(output());
     }
 };
 

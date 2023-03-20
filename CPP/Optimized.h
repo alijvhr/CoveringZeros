@@ -6,13 +6,13 @@
 class Optimized : public ZerosCover {
 
 private:
-    std::vector <std::vector<int>> powers;
-    std::vector <std::vector<int>> crosses;
+    iVec powers[2];
+    iMatrix crosses[2];
 
-    std::vector<int, 2> sides;
+    int sides[2];
 
     bool crossLines(int axis, int id) {
-        std::vector<int> lc = crosses[axis][id];
+        iVec lc = crosses[axis][id];
         bool rt = true;
         for (int j = 0; j < lc.size() && rt; j++) {
             rt &= line(!axis, lc[j]);
@@ -26,7 +26,7 @@ private:
         lines[axis][id] = true;
         minimum++;
         if (--sides[axis] == 0) return false;
-        std::vector<int> lc = crosses[axis][id];
+        iVec lc = crosses[axis][id];
         powers[axis][id] = 0;
         int cross = !axis;
         int op;
@@ -47,45 +47,32 @@ private:
     }
 
 public:
-    Optimized(int n, int m) : ZerosCover(n, m) {
-        powers.resize(2, std::vector<int>(n + m));
-        crosses.resize(2, std::vector<int>(n + m));
-        sides[0] = n;
-        sides[1] = m;
+    Optimized &run() override {
+        long len[2];
+        len[0] = matrix.size();
+        len[1] = matrix[0].size();
+        powers[0] = iVec(matrix.size(), 0);
+        powers[1] = iVec(matrix.size(), 1);
 
-        for (int i = 0; i < n + m; i++) {
-            powers[0][i] = powers[1][i] = 0;
-            crosses[0][i].clear();
-            crosses[1][i].clear();
-        }
+        crosses[0] = Matrix::create(len[0], 0, 0);
+        crosses[1] = Matrix::create(len[1], 0, 0);
 
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                crosses[0][i + j].push_back(j);
-                crosses[1][i + j].push_back(i);
-            }
-        }
-    }
+        crosses[0] = Matrix::create(len[0], 0, 0);
+        crosses[1] = Matrix::create(len[1], 0, 0);
 
-    void run() {
-        auto input = matrix;
-        auto len = std::array < int,
-        2 > {static_cast<int>(input.size()), static_cast<int>(input[0].size())};
-        auto* powers = &this.powers = std::array < std::std::vector < int >,
-        2 > {std::std::vector<int>(len[0], 0), std::std::vector<int>(len[1], 0)};
-        auto* crosses = &this.crosses = std::array < matrix_t,
-        2 > {Matrix::create(len[0], 0), Matrix::create(len[1], 0)};
-        auto* lines = &this.lines = std::array < std::std::vector < bool >,
-        2 > {std::std::vector<bool>(len[0], false), std::std::vector<bool>(len[1], false)};
+        lines[0] = bVec(len[0], false);
+        lines[1] = bVec(len[1], false);
+
         minimum = 0;
+
         auto lastRow = len[0] - 1;
-        auto sides = std::array < int,
-        2 > {0, 0};
+        sides[0] = 0;
+        sides[1] = 1;
 
         // Step 1
         for (auto row = 0; row < len[0]; row++) {
             for (auto col = 0; col < len[1]; col++) {
-                if (input[row][col] == 0) {
+                if (matrix[row][col] == 0) {
                     powers[0][row]++;
                     powers[1][col]++;
                     crosses[0][row].push_back(col);
@@ -110,7 +97,7 @@ public:
         // OppositePower: Sum of opposite power
         int op;
         // LineCrosses: crosses in a line
-        std::vector<int>* lc;
+        iVec &lc = crosses[0][0];
         // Cross axis ID
         int cross;
         // CrossPower: power of the current cross
@@ -124,7 +111,7 @@ public:
             for (int i = 0; i < len[main] && more; i++) {
                 mp = powers[main][i];
                 if (mp == 0) continue;
-                lc = &crosses[main][i];
+                lc = crosses[main][i];
                 om[0] = maximum;
                 om[1] = maximum;
                 op = 0;
@@ -143,23 +130,23 @@ public:
                     }
                 }
                 if (om[0] == 1 || (om[0] + om[1]) <= mp) {
-                    more = this->line(main, i);
+                    more = line(main, i);
                 } else if (mp == 1) {
-                    more = this->crossLines(main, i);
+                    more = crossLines(main, i);
                 } else if (main == 1) {
                     if (sides[main] < sides[cross]) {
-                        more = this->line(main, i);
+                        more = line(main, i);
                     } else {
-                        more = this->crossLines(main, i);
+                        more = crossLines(main, i);
                     }
                 }
-                if (this->minimum >= maximum) {
-                    this->minimum = maximum;
+                if (minimum >= maximum) {
+                    minimum = maximum;
                     more = false;
                 }
             }
         }
-        if (this->minimum == 0) this->minimum = maximum;
+        if (minimum == 0) minimum = maximum;
         return *this;
     }
 };

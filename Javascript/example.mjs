@@ -1,4 +1,4 @@
-import Bruteforce from "./BruteForce.mjs";
+import Bruteforce from "./Bruteforce.mjs";
 import Optimized from "./Optimized.mjs";
 
 let bruteforce = new Bruteforce();

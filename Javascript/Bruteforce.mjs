@@ -1,6 +1,6 @@
 import ZerosCover from "./ZerosCover.mjs";
 
-export default class BruteForce extends ZerosCover {
+export default class Bruteforce extends ZerosCover {
 
     run() {
         let len = [this.matrix.length, this.matrix[0].length];
