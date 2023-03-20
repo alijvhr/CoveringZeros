@@ -10,6 +10,16 @@ I will be happy to accept any contribution and help. ❤️
 
 It's free to use and copy but please consider a simple link to this repo!
 
+
+## Supported Languages
+
+* [X]  Javascript
+* [ ]  C++
+* [ ]  Python
+* [ ]  PHP
+* [ ]  Java
+* [ ]  Go
+
 ## Benchmarks
 
 **There is some benchmark results below and you can see the performance your self!**
@@ -25,8 +35,6 @@ Average timings are (milliseconds):
     { Bruteforce: 2556.9042939997466, Optimized: 0.08223899953067303 }
 ```
 
-
-
 Result of **100 random generated matrixes with 12 rows and 10 columns**:
 
 ```
@@ -36,8 +44,6 @@ Average timings are (milliseconds):
      { Bruteforce: 34.59206000007689, Optimized: 0.06983000054955482 }
 
 ```
-
-
 
 Result of **1000 random generated matrixes with 10 rows and 10 columns**:
 
@@ -52,7 +58,6 @@ Average timings are (milliseconds):
 I will write a wiki about it in near future so you can the the algorithm.
 
 Made with ❤️.
-
 
 ## Contacts
 
